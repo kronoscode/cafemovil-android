@@ -72,8 +72,8 @@
 
     <LinearLayout
         android:id="@+id/buttonsGroup"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_height="318dp"
         android:layout_below="@id/title_3"
         android:gravity="center"
         android:orientation="vertical">
@@ -84,55 +84,68 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="5dp"
             android:background="@drawable/btn"
+            android:padding="20dp"
             android:text="@string/guide_list"
             android:textAllCaps="true"
-            android:textStyle="bold"
-            android:padding="20dp"
+            android:textColor="@drawable/button_text_color"
             android:textSize="@dimen/list_number_text_size_2"
-            android:textColor="@drawable/button_text_color" />
+            android:textStyle="bold" />
 
         <Button
             android:id="@+id/btn_go_about"
             android:layout_width="@dimen/welcome_screen_button_width"
             android:layout_height="wrap_content"
             android:layout_marginBottom="5dp"
-            android:padding="20dp"
             android:background="@drawable/btn"
+            android:padding="20dp"
             android:text="@string/title_activity_about"
             android:textAllCaps="true"
-            android:textStyle="bold"
+            android:textColor="@drawable/button_text_color"
             android:textSize="@dimen/list_number_text_size_2"
-            android:textColor="@drawable/button_text_color" />
+            android:textStyle="bold" />
 
         <Button
             android:id="@+id/btn_go_tutorial"
             android:layout_width="@dimen/welcome_screen_button_width"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
             android:background="@drawable/btn"
-            android:textStyle="bold"
-            android:textSize="@dimen/list_number_text_size_2"
-            android:text="@string/tutorial"
             android:padding="20dp"
+            android:text="@string/tutorial"
             android:textAllCaps="true"
-            android:textColor="@drawable/button_text_color" />
+            android:textColor="@drawable/button_text_color"
+            android:textSize="@dimen/list_number_text_size_2"
+            android:textStyle="bold" />
+
+        <Button
+            android:id="@+id/btn_go_weather"
+            android:layout_width="@dimen/welcome_screen_button_width"
+            android:layout_height="wrap_content"
+            android:background="@drawable/btn"
+            android:padding="20dp"
+            android:text="@string/weather"
+            android:textAllCaps="true"
+            android:textColor="@drawable/button_text_color"
+            android:textSize="@dimen/list_number_text_size_2"
+            android:textStyle="bold" />
 
     </LinearLayout>
 
     <RelativeLayout
-        android:layout_width="wrap_content"
-        android:layout_height="100dp"
-        android:layout_alignParentBottom="true"
+        android:layout_width="110dp"
+        android:layout_height="93dp"
         android:layout_below="@id/buttonsGroup"
+        android:layout_alignParentBottom="true"
+        android:layout_marginTop="75dp"
         android:layout_marginBottom="10dp"
-        android:layout_marginTop="30dp"
         android:gravity="start">
 
         <ImageView
             android:id="@+id/lutheran"
-            android:layout_alignParentBottom="true"
             android:layout_width="100dp"
-            android:layout_marginLeft="10dp"
             android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_marginLeft="10dp"
             android:src="@drawable/ic_welcome_logo_footer" />
 
     </RelativeLayout>

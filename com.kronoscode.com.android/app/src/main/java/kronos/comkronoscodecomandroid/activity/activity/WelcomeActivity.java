@@ -105,6 +105,13 @@ public class WelcomeActivity extends BaseActivity {
         this.overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
     }
 
+    @OnClick(R.id.btn_go_weather)
+    public void setGotToWeather(){
+        Intent intent = new Intent(this, weatherActivity.class);
+        startActivity(intent);
+        this.overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
+    }
+
     private void fillCacaoInfo() {
         runOnUiThread(new Runnable() {
             @Override

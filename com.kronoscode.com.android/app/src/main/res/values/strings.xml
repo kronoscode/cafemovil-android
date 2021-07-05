@@ -22,6 +22,8 @@
     <string name="no_results">No hay resultados</string>
     <string name="youtube_video">http://ihcafemovil.ihcafe.hn/videotutorial/</string>
     <string name="tutorial">Tutorial</string>
+    <string name="weather">Clima</string>
+    <string name="forecast">PRONÓSTICO</string>
     <string name="downloading_text">Descargando guía..</string>
     <string name="not_manifest_found">No se encontro archivo manifest</string>
     <string name="error">Algo malo ha pasado</string>
