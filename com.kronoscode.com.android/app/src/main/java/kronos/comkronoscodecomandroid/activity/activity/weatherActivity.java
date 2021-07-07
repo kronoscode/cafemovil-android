@@ -11,12 +11,15 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 //import com.kronoscode.cacao.android.app.model.Location;
+import com.google.gson.JsonIOException;
+import kronos.comkronoscodecomandroid.activity.adapter.ForecastWeatherAdapter;
 import com.kronoscode.cacao.android.app.model.Weather;
+import com.kronoscode.cacao.android.app.model.WeatherForecast;
 import com.kronoscode.cacao.android.app.provider.WeatherProvider;
 
 import android.Manifest;
-import android.annotation.SuppressLint;
 import android.os.AsyncTask;
+import android.os.Build;
 import android.os.Bundle;
 import android.app.Activity;
 import android.content.Context;
@@ -29,9 +32,15 @@ import android.location.LocationManager;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.support.annotation.RequiresApi;
 import android.support.v4.app.ActivityCompat;
+import android.support.v4.view.ViewPager;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentActivity;
+
 import android.util.Log;
 
+import java.text.ParseException;
 import java.util.List;
 import java.util.Locale;
 
@@ -41,7 +50,7 @@ import android.widget.TextView;
 
 import kronos.comkronoscodecomandroid.R;
 
-public class weatherActivity extends Activity {
+public class weatherActivity extends FragmentActivity {
     protected LocationManager locationManager;
     protected LocationListener locationListener;
     protected Context context;
@@ -50,7 +59,6 @@ public class weatherActivity extends Activity {
     Location final_loc;
     double longitude;
     double latitude;
-    String userCity, userAddress;
 
     private TextView cityText;
     private TextView condDescr;
@@ -58,7 +66,9 @@ public class weatherActivity extends Activity {
     private TextView press;
     private TextView feelsLike;
     private TextView windSpeed;
-    private TextView windDeg;
+
+    private static String forecastDaysNum = "6";
+    private ViewPager pager;
 
     private TextView hum;
     private ImageView imgView;
@@ -67,7 +77,8 @@ public class weatherActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_weather);
-        String city = "Chinandega";
+        // dafault city
+        String city = "Managua";
         cityText = findViewById(R.id.cityText);
         condDescr = findViewById(R.id.condDescr);
         hum = findViewById(R.id.hum);
@@ -75,8 +86,9 @@ public class weatherActivity extends Activity {
         windSpeed = findViewById(R.id.windSpeed);
         imgView = findViewById(R.id.condIcon);
         feelsLike = findViewById(R.id.feelsLike);
+        pager = findViewById(R.id.pager);
+
         locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
-//        locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, this);
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             // TODO: Consider calling
             //    ActivityCompat#requestPermissions
@@ -123,11 +135,13 @@ public class weatherActivity extends Activity {
         String StrLat = String.valueOf(latitude);
         String StrLng = String.valueOf(longitude);
 
-
+        // retrieve weather (current) data
         JSONWeatherTask task = new JSONWeatherTask();
-//        task.execute(new String[]{city});
-//        task.execute(city);
         task.execute(new String[]{city,StrLat, StrLng});
+
+        // retrieve forecast data
+        JSONForecastTask forecastTask = new JSONForecastTask();
+        forecastTask.execute(new String[]{city});
 
     }
 
@@ -172,8 +186,6 @@ public class weatherActivity extends Activity {
             super.onPostExecute(weather);
             Log.i("weather", weather.toString());
 
-
-
             if (weather.iconData != null && weather.iconData.length > 0) {
                 Bitmap img = BitmapFactory.decodeByteArray(weather.iconData, 0, weather.iconData.length);
                 imgView.setImageBitmap(img);
@@ -190,6 +202,29 @@ public class weatherActivity extends Activity {
             windSpeed.setText("" + windSpeedInKMH + " km/h");
 //            windDeg.setText("" + weather.wind.getDeg() + "");
 
+        }
+    }
+
+    private class JSONForecastTask extends AsyncTask<String,Void, WeatherForecast> {
+
+        @RequiresApi(api = Build.VERSION_CODES.O)
+        @Override
+        protected WeatherForecast doInBackground(String... strings) {
+            String forecastData = ((new WeatherProvider()).getForecastWeatherData(strings[0]));
+            WeatherForecast forecast = new WeatherForecast();
+            try {
+                forecast = JSONWeatherParser.getForecastWeather(forecastData);
+            } catch (JSONException | ParseException e){
+                e.printStackTrace();
+            }
+            return forecast;
+        }
+
+        @Override
+        protected void  onPostExecute(WeatherForecast forecastWeather) {
+            super.onPostExecute(forecastWeather);
+            ForecastWeatherAdapter adapter = new ForecastWeatherAdapter(Integer.parseInt(forecastDaysNum), getSupportFragmentManager() ,forecastWeather);
+            pager.setAdapter(adapter);
         }
     }
 }

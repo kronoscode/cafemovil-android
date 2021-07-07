@@ -3,8 +3,8 @@
     android:id="@+id/weather_activity"
     android:layout_width="fill_parent"
     android:layout_height="match_parent"
-    android:layout_gravity="center"
     android:background="@drawable/landscape_of_mountains"
+    android:layout_gravity="center"
     tools:context="kronos.comkronoscodecomandroid.activity.activity.weatherActivity">
 
     <RelativeLayout
@@ -27,7 +27,8 @@
                 android:layout_marginTop="30dp"
                 android:orientation="horizontal"
                 android:layout_marginStart="20dp"
-                android:layout_marginEnd="20dp">
+                android:layout_marginEnd="20dp"
+                android:baselineAligned="false">
                 <!--      here: city, temp, min,max   -->
                 <LinearLayout
                     android:gravity="center"
@@ -40,7 +41,6 @@
                         style="?android:textAppearanceMedium"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_centerHorizontal="true"
                         android:text="Ciudad"
                         android:textSize="16sp"
                         android:textFontWeight="800"
@@ -190,13 +190,15 @@
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/forecastTittle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/weather_container"
             android:layout_marginTop="20dp"
             android:orientation="horizontal"
             android:layout_marginStart="20dp"
-            android:layout_marginEnd="20dp">
+            android:layout_marginEnd="20dp"
+            android:baselineAligned="false">
             <LinearLayout
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
@@ -210,7 +212,35 @@
                     android:textAlignment="center"
                     />
             </LinearLayout>
+        </LinearLayout>
 
+        <LinearLayout
+            android:layout_below="@+id/forecastTittle"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="10dp"
+            android:background="@color/white"
+            android:gravity="center_horizontal"
+            android:orientation="vertical">
+            <android.support.v4.view.ViewPager
+                android:id="@+id/pager"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="top"
+                android:paddingBottom="4dp"
+                android:background="#770000"
+                android:visibility="visible">
+                <android.support.v4.view.PagerTitleStrip
+                    android:id="@+id/pager_title_strip"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="top"
+                    android:background="#810000"
+                    android:paddingBottom="4dp"
+                    android:paddingTop="4dp"
+                    android:textColor="#FFFFFF" />
+
+            </android.support.v4.view.ViewPager>
         </LinearLayout>
 
     </RelativeLayout>

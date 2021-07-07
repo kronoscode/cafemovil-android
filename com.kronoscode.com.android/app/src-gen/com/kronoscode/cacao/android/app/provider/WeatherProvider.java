@@ -19,7 +19,6 @@ public class WeatherProvider {
 
         try {
             con = (HttpURLConnection) ( new URL(BASE_URL + lat + "&lon=" + lng + "&lang=es&appid=" + APP_ID)).openConnection();
-//            con = (HttpURLConnection) ( new URL(BASE_URL + "&lang=es&appid=" + APPID)).openConnection();
             con.setRequestMethod("GET");
 
             con.setDoInput(true);
@@ -35,7 +34,6 @@ public class WeatherProvider {
                 buffer.append(line + "\\r\\n");
 
             is.close();
-//            br.close();
             con.disconnect();
             return buffer.toString();
         }
@@ -86,32 +84,39 @@ public class WeatherProvider {
         InputStream is = null;
 
         try {
-
             // Forecast
-            String url = BASE_FORECAST_URL + city + "&&units=metric&lang=es&appid=" + APP_ID;
-//            if (lang != null)
-//                url = url + "&lang=" + lang;
-//
-//            url = url + "&cnt=" + forecastDayNum;
-            con = (HttpURLConnection) ( new URL(url)).openConnection();
+//            String url = BASE_FORECAST_URL + city + "&&units=metric&lang=es&appid=" + APP_ID;
+            con = (HttpURLConnection) ( new URL(BASE_FORECAST_URL + city + "&&units=metric&lang=es&appid=" + APP_ID)).openConnection();
+//            con = (HttpURLConnection) ( new URL(url)).openConnection();
             con.setRequestMethod("GET");
             con.setDoInput(true);
             con.setDoOutput(true);
             con.connect();
 
-            // Let's read the response
-            StringBuffer buffer1 = new StringBuffer();
+            // read the response
+//            StringBuffer buffer1 = new StringBuffer();
+//            is = con.getInputStream();
+//            BufferedReader br1 = new BufferedReader(new InputStreamReader(is));
+//            String line1 = "";
+//            while (  (line1 = br1.readLine()) != null )
+//                buffer1.append(line1 + "\\r\\n");
+//
+//            is.close();
+//            con.disconnect();
+//
+//            System.out.println("Buffer ["+buffer1.toString()+"]");
+//            return buffer1.toString();
+            StringBuffer buffer = new StringBuffer();
             is = con.getInputStream();
-            BufferedReader br1 = new BufferedReader(new InputStreamReader(is));
-            String line1 = null;
-            while (  (line1 = br1.readLine()) != null )
-                buffer1.append(line1 + "\r\n");
+            BufferedReader br = new BufferedReader(new InputStreamReader(is));
+            String line = "";
+            while (  (line = br.readLine()) != null )
+                buffer.append(line + "\\r\\n");
 
             is.close();
             con.disconnect();
-
-            System.out.println("Buffer ["+buffer1.toString()+"]");
-            return buffer1.toString();
+            //            System.out.println("Buffer ["+buffer1.toString()+"]");
+            return buffer.toString();
         }
         catch(Throwable t) {
             t.printStackTrace();
