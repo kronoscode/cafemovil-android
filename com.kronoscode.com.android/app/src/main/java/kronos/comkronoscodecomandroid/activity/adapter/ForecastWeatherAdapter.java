@@ -4,8 +4,6 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
 
-//import kronos.comkronoscodecomandroid.activity.adapter.ForecastWeatherAdapter;
-import kronos.comkronoscodecomandroid.R;
 import kronos.comkronoscodecomandroid.activity.fragment.DayForecastFragment;
 
 import com.kronoscode.cacao.android.app.model.WeatherForecast;
@@ -14,14 +12,14 @@ import com.kronoscode.cacao.android.app.model.DayForecast;
 
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.app.FragmentStatePagerAdapter;
 
 
-public class ForecastWeatherAdapter extends FragmentPagerAdapter{
+public class ForecastWeatherAdapter extends FragmentStatePagerAdapter{
     private int numDays;
     private FragmentManager fm;
     private WeatherForecast forecast;
-    private final static SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+    private final static SimpleDateFormat sdf = new SimpleDateFormat("EEEE");
 
     public ForecastWeatherAdapter(int numDays, FragmentManager fm, WeatherForecast forecast) {
         super(fm);

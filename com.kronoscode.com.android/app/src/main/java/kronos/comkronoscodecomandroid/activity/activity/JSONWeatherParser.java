@@ -73,7 +73,6 @@ public class JSONWeatherParser {
         return weather;
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.O)
     public static WeatherForecast getForecastWeather(String data) throws JSONException, ParseException {
 
         WeatherForecast forecast = new WeatherForecast();
@@ -128,6 +127,7 @@ public class JSONWeatherParser {
                 df.timestamp = jDayForecast.getLong("dt");
 
                 JSONObject mainForecastObj = getObject("main", jDayForecast);
+                df.weather.temperature.setTemp(getFloat("temp", mainForecastObj));
                 df.weather.temperature.setMaxTemp(getFloat("temp_max", mainForecastObj));
                 df.weather.temperature.setMinTemp(getFloat("temp_min", mainForecastObj));
 

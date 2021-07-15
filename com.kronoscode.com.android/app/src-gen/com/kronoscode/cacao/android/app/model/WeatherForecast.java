@@ -1,5 +1,3 @@
-// (http://www.survivingwithandroid.com)
-
 package com.kronoscode.cacao.android.app.model;
 
 import java.util.ArrayList;

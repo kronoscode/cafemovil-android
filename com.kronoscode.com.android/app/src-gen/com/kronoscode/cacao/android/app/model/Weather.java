@@ -11,7 +11,7 @@ public class Weather {
 
     public byte[] iconData;
 
-    public  class CurrentCondition {
+    public class CurrentCondition {
         private int weatherId;
         private String condition;
         private String descr;
@@ -61,7 +61,7 @@ public class Weather {
 
     }
 
-    public  class Temperature {
+    public class Temperature {
         private float temp;
         private float minTemp;
         private float maxTemp;
@@ -94,7 +94,7 @@ public class Weather {
 
     }
 
-    public  class Wind {
+    public class Wind {
         private float speed;
         private float deg;
         public float getSpeed() {
@@ -113,7 +113,7 @@ public class Weather {
 
     }
 
-    public  class Rain {
+    public class Rain {
         private String time;
         private float ammount;
         public String getTime() {
@@ -131,7 +131,7 @@ public class Weather {
 
     }
 
-    public  class Snow {
+    public class Snow {
         private String time;
         private float ammount;
 
@@ -149,7 +149,7 @@ public class Weather {
         }
     }
 
-    public  class Clouds {
+    public class Clouds {
         private int perc;
 
         public int getPerc() {

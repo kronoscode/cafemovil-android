@@ -1,27 +1,16 @@
 package kronos.comkronoscodecomandroid.activity.activity;
 
-import java.io.BufferedReader;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.net.HttpURLConnection;
-import java.net.URL;
-
-import org.json.JSONArray;
 import org.json.JSONException;
-import org.json.JSONObject;
 
-//import com.kronoscode.cacao.android.app.model.Location;
-import com.google.gson.JsonIOException;
 import kronos.comkronoscodecomandroid.activity.adapter.ForecastWeatherAdapter;
 import com.kronoscode.cacao.android.app.model.Weather;
 import com.kronoscode.cacao.android.app.model.WeatherForecast;
 import com.kronoscode.cacao.android.app.provider.WeatherProvider;
 
 import android.Manifest;
+import android.graphics.drawable.ColorDrawable;
 import android.os.AsyncTask;
-import android.os.Build;
 import android.os.Bundle;
-import android.app.Activity;
 import android.content.Context;
 import android.content.pm.PackageManager;
 import android.location.Location;
@@ -30,14 +19,13 @@ import android.location.Geocoder;
 import android.location.LocationListener;
 import android.location.LocationManager;
 
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.support.annotation.RequiresApi;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
-
+import android.support.v7.app.ActionBar;
+import android.support.v7.widget.Toolbar;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 
 import java.text.ParseException;
@@ -45,12 +33,14 @@ import java.util.List;
 import java.util.Locale;
 
 import android.view.Menu;
+import android.view.MenuItem;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+
 import kronos.comkronoscodecomandroid.R;
 
-public class weatherActivity extends FragmentActivity {
+public class weatherActivity extends AppCompatActivity {
     protected LocationManager locationManager;
     protected LocationListener locationListener;
     protected Context context;
@@ -59,15 +49,13 @@ public class weatherActivity extends FragmentActivity {
     Location final_loc;
     double longitude;
     double latitude;
-
     private TextView cityText;
     private TextView condDescr;
     private TextView temp;
-    private TextView press;
     private TextView feelsLike;
     private TextView windSpeed;
 
-    private static String forecastDaysNum = "6";
+    private static String forecastDaysNum = "5";
     private ViewPager pager;
 
     private TextView hum;
@@ -76,9 +64,22 @@ public class weatherActivity extends FragmentActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_weather);
+
+        Toolbar toolbar = findViewById(R.id.weather_toolbar);
+        setSupportActionBar(toolbar);
+        ActionBar actionBar = getSupportActionBar();
+        setTitle(getString(R.string.title_activity_weather));
+        if (actionBar != null) {
+            actionBar.setDisplayHomeAsUpEnabled(true);
+            actionBar.setHomeButtonEnabled(true);
+            actionBar.setHomeAsUpIndicator(R.drawable.ic_back_home);
+        }
+
         // dafault city
         String city = "Managua";
+
         cityText = findViewById(R.id.cityText);
         condDescr = findViewById(R.id.condDescr);
         hum = findViewById(R.id.hum);
@@ -145,6 +146,21 @@ public class weatherActivity extends FragmentActivity {
 
     }
 
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle action bar item clicks here. The action bar will
+        // automatically handle clicks on the Home/Up button, so long
+        // as you specify a parent activity in AndroidManifest.xml.
+        int id = item.getItemId();
+
+        //noinspection SimplifiableIfStatement
+        if (id == android.R.id.home) {
+            finish();
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
+
     public static String fmt(double d)
     {
         if (d == Math.floor(d)) {
@@ -154,14 +170,6 @@ public class weatherActivity extends FragmentActivity {
         }
     }
 
-//    @Override
-//    public boolean onCreateOptionsMenu(Menu menu) {
-//        // Inflate the menu; this adds items to the action bar if it is present.
-//        getMenuInflater().inflate(R.menu.menu_about, menu);
-//        return true;
-//    }
-
-
     private class JSONWeatherTask extends AsyncTask<String, Void, Weather> {
         @Override
         protected Weather doInBackground(String... params) {
@@ -170,9 +178,6 @@ public class weatherActivity extends FragmentActivity {
 
             try {
                 weather = JSONWeatherParser.getWeather(data);
-
-                // retrieve the icon
-                weather.iconData = ( (new WeatherProvider()).getImage(weather.currentCondition.getIcon()));
 
             } catch (JSONException e) {
                 e.printStackTrace();
@@ -186,20 +191,22 @@ public class weatherActivity extends FragmentActivity {
             super.onPostExecute(weather);
             Log.i("weather", weather.toString());
 
-            if (weather.iconData != null && weather.iconData.length > 0) {
-                Bitmap img = BitmapFactory.decodeByteArray(weather.iconData, 0, weather.iconData.length);
-                imgView.setImageBitmap(img);
-            }
-            String windSpeedInKMH = String.format("%.2f", weather.wind.getSpeed() * 3.6);
+            String iconCode = "ic_" + weather.currentCondition.getIcon();
+            int imageResource = getResources().getIdentifier(iconCode, "drawable", getPackageName());
+
+            imgView.setImageResource(imageResource);
+            long windSpeedInKMH = Math.round(weather.wind.getSpeed() * 3.6);
             //fmt(weather.wind.getSpeed()* 3.6);
 
+            String capitalizeDesc = weather.currentCondition.getDescr().substring(0, 1).toUpperCase() + weather.currentCondition.getDescr().substring(1);
+
             cityText.setText(weather.location.getCity() + "," + weather.location.getCountry());
-            condDescr.setText(weather.currentCondition.getDescr());
+            condDescr.setText(capitalizeDesc);
             temp.setText("" + Math.round((weather.temperature.getTemp())) + "° C");
             hum.setText("" + weather.currentCondition.getHumidity() + "%");
             feelsLike.setText("" + Math.round((weather.temperature.getFeelsLike())) + "° C");
 //            press.setText("" + weather.currentCondition.getPressure() + " hPa");
-            windSpeed.setText("" + windSpeedInKMH + " km/h");
+            windSpeed.setText("" + Math.round(weather.wind.getSpeed() * 3.6) + " km/h");
 //            windDeg.setText("" + weather.wind.getDeg() + "");
 
         }
@@ -207,7 +214,6 @@ public class weatherActivity extends FragmentActivity {
 
     private class JSONForecastTask extends AsyncTask<String,Void, WeatherForecast> {
 
-        @RequiresApi(api = Build.VERSION_CODES.O)
         @Override
         protected WeatherForecast doInBackground(String... strings) {
             String forecastData = ((new WeatherProvider()).getForecastWeatherData(strings[0]));

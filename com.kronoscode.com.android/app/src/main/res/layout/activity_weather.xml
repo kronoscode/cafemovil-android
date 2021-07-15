@@ -1,25 +1,38 @@
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/weather_activity"
-    android:layout_width="fill_parent"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/landscape_of_mountains"
-    android:layout_gravity="center"
+    android:layout_weight="1"
+    android:fillViewport="true"
+    android:background="@color/white"
     tools:context="kronos.comkronoscodecomandroid.activity.activity.weatherActivity">
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
+        android:layout_height="match_parent"
+        android:layout_weight="1">
         <include
-            android:id="@+id/toolbar"
-            layout="@layout/app_toolbar"/>
+            android:id="@+id/weather_toolbar"
+            layout="@layout/app_weather_toolbar" />
+
+<!--        <android.support.v7.widget.Toolbar-->
+<!--            android:id="@+id/my_toolbar"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="?attr/actionBarSize"-->
+<!--            android:elevation="4dp"-->
+<!--            android:background="@color/toolbar_header"-->
+<!--            android:theme="@style/ThemeOverlay.AppCompat.ActionBar"/>-->
 
         <LinearLayout
             android:id="@+id/weather_container"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:layout_below="@+id/weather_toolbar"
+            android:orientation="vertical"
+            android:paddingBottom="40dp"
+            android:background="@drawable/weather_bg">
             <LinearLayout
                 android:id="@+id/layout_city_weather"
                 android:layout_width="match_parent"
@@ -52,7 +65,7 @@
                         android:layout_height="wrap_content"
                         android:gravity="center"
                         android:text="@string/weather"
-                        android:textSize="16sp"
+                        android:textSize="36sp"
                         android:textFontWeight="800"
                         android:textColor="@color/white"/>
                 </LinearLayout>
@@ -79,9 +92,8 @@
                     android:gravity="center">
                     <ImageView
                         android:id="@+id/condIcon"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentStart="true"
+                        android:layout_width="100dp"
+                        android:layout_height="100dp"
                         android:contentDescription="@string/weather" />
                     <TextView
                         android:id="@+id/condDescr"
@@ -101,7 +113,7 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/layout_current_weather"
                 android:layout_marginStart="20dp"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="30dp"
                 android:layout_marginEnd="20dp"
                 android:orientation="horizontal">
                 <LinearLayout
@@ -113,9 +125,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_alignParentBottom="true"
-                        android:layout_weight="1"
-                        android:text="Sensación:"
+                        android:text="@string/forecast_feels_like"
                         android:textSize="16sp"
                         android:textFontWeight="800"
                         android:textColor="@color/white" />
@@ -123,8 +133,6 @@
                         android:id="@+id/feelsLike"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_alignParentBottom="true"
-                        android:layout_weight="1"
                         android:text="° C"
                         android:textSize="14sp"
                         android:textFontWeight="800"
@@ -141,9 +149,8 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_alignParentBottom="true"
                         android:layout_weight="1"
-                        android:text="Humedad:"
+                        android:text="@string/forecast_humidity"
                         android:textSize="16sp"
                         android:textFontWeight="800"
                         android:textColor="@color/white" />
@@ -151,7 +158,6 @@
                         android:id="@+id/hum"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
                         android:text="%"
                         android:textSize="14sp"
                         android:textFontWeight="800"
@@ -169,7 +175,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="Viento:"
+                        android:text="@string/forecast_wind_speed"
                         android:textSize="16sp"
                         android:textFontWeight="800"
                         android:textColor="@color/white" />
@@ -178,8 +184,6 @@
                         style=""
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_alignParentStart="true"
-                        android:layout_weight="1"
                         android:text="Km/h"
                         android:textSize="14sp"
                         android:textFontWeight="800"
@@ -197,20 +201,22 @@
             android:layout_marginTop="20dp"
             android:orientation="horizontal"
             android:layout_marginStart="20dp"
-            android:layout_marginEnd="20dp"
-            android:baselineAligned="false">
+            android:layout_marginEnd="20dp">
             <LinearLayout
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:orientation="vertical"
                 android:gravity="center">
+
                 <TextView
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:text="@string/forecast"
-                    android:textAlignment="center"
-                    />
+                    android:textColor="@color/black"
+                    android:textSize="14sp"
+                    android:textFontWeight="800"
+                    android:textAlignment="center" />
             </LinearLayout>
         </LinearLayout>
 
@@ -218,32 +224,34 @@
             android:layout_below="@+id/forecastTittle"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginTop="10dp"
-            android:background="@color/white"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="20dp"
             android:gravity="center_horizontal"
             android:orientation="vertical">
             <android.support.v4.view.ViewPager
                 android:id="@+id/pager"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="350dp"
                 android:layout_gravity="top"
                 android:paddingBottom="4dp"
-                android:background="#770000"
                 android:visibility="visible">
                 <android.support.v4.view.PagerTitleStrip
                     android:id="@+id/pager_title_strip"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="top"
-                    android:background="#810000"
                     android:paddingBottom="4dp"
                     android:paddingTop="4dp"
-                    android:textColor="#FFFFFF" />
+                    android:textColor="@color/black" />
 
             </android.support.v4.view.ViewPager>
         </LinearLayout>
 
     </RelativeLayout>
+
+
+
+
 
 
 

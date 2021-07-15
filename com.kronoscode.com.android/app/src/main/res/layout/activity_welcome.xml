@@ -62,7 +62,7 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/welcome_title_2"
-        android:layout_marginBottom="40dp"
+        android:layout_marginBottom="30dp"
         android:gravity="center"
         android:text="@string/title_3_welcome"
         android:paddingLeft="10dp"
@@ -73,7 +73,7 @@
     <LinearLayout
         android:id="@+id/buttonsGroup"
         android:layout_width="match_parent"
-        android:layout_height="318dp"
+        android:layout_height="378dp"
         android:layout_below="@id/title_3"
         android:gravity="center"
         android:orientation="vertical">
@@ -127,26 +127,73 @@
             android:textAllCaps="true"
             android:textColor="@drawable/button_text_color"
             android:textSize="@dimen/list_number_text_size_2"
+            android:textStyle="bold"
+            android:layout_marginBottom="5dp"
+            />
+
+        <Button
+            android:id="@+id/btn_go_coffee_price"
+            android:layout_width="@dimen/welcome_screen_button_width"
+            android:layout_height="wrap_content"
+            android:background="@drawable/btn"
+            android:padding="20dp"
+            android:text="@string/coffee_price"
+            android:textAllCaps="true"
+            android:textColor="@drawable/button_text_color"
+            android:textSize="@dimen/list_number_text_size_2"
             android:textStyle="bold" />
 
     </LinearLayout>
 
     <RelativeLayout
-        android:layout_width="110dp"
+        android:layout_width="match_parent"
         android:layout_height="93dp"
         android:layout_below="@id/buttonsGroup"
         android:layout_alignParentBottom="true"
-        android:layout_marginTop="75dp"
+        android:layout_marginTop="5dp"
         android:layout_marginBottom="10dp"
         android:gravity="start">
 
-        <ImageView
-            android:id="@+id/lutheran"
-            android:layout_width="100dp"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:layout_marginLeft="10dp"
-            android:src="@drawable/ic_welcome_logo_footer" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_weight="1"
+                android:gravity="center">
+                <ImageView
+                    android:id="@+id/lwr_logo"
+                    android:layout_width="100dp"
+                    android:layout_height="50dp"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginLeft="10dp"
+                    android:src="@drawable/ic_welcome_logo_footer"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_weight="1"
+                android:gravity="center">
+                <ImageView
+                    android:id="@+id/lutheran"
+                    android:layout_width="150dp"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginLeft="10dp"
+                    android:src="@drawable/lwr_horizontal_white" />
+
+            </LinearLayout>
+
+
+
+        </LinearLayout>
+
+
 
     </RelativeLayout>
 </RelativeLayout>

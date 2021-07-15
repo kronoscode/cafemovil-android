@@ -14,6 +14,8 @@
     <string name="action_update_api">Cambiar URL de servicio</string>
     <string name="title_activity_welcome">WelcomeActivity</string>
     <string name="title_activity_about">Acerca de</string>
+    <string name="title_activity_weather">Clima</string>
+    <string name="title_activity_coffee">Precio del café</string>
     <string name="title_load_sdCard">Importar desde Memoria Externa</string>
     <string name="guide_list">Lista de Cartillas</string>
     <string name="download">Descargar</string>
@@ -24,6 +26,17 @@
     <string name="tutorial">Tutorial</string>
     <string name="weather">Clima</string>
     <string name="forecast">PRONÓSTICO</string>
+    <string name="forecast_feels_like">Sensación</string>
+    <string name="forecast_humidity">Humedad</string>
+    <string name="forecast_wind_speed">Viento</string>
+    <string name="coffee_price">Precio del café</string>
+    <string name="coffee_international_price">PRECIO INTERNACIONAL DEL CAFÉ</string>
+    <string name="coffee_today_range">Rango de hoy</string>
+    <string name="coffee_today_range_desc">Rango de precios durante el día</string>
+    <string name="coffee_prev_close">Último cierre</string>
+    <string name="coffee_prev_close_desc">Último precio de cierre registrado</string>
+    <string name="coffee_open">Apertura</string>
+    <string name="coffee_open_desc">Último precio de apertura registrado</string>
     <string name="downloading_text">Descargando guía..</string>
     <string name="not_manifest_found">No se encontro archivo manifest</string>
     <string name="error">Algo malo ha pasado</string>
