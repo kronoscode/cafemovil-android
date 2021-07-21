@@ -8,7 +8,7 @@ import com.kronoscode.cacao.android.app.model.WeatherForecast;
 import com.kronoscode.cacao.android.app.provider.WeatherProvider;
 
 import android.Manifest;
-import android.graphics.drawable.ColorDrawable;
+import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.content.Context;
@@ -20,6 +20,7 @@ import android.location.LocationListener;
 import android.location.LocationManager;
 
 import android.support.v4.app.ActivityCompat;
+import android.support.v4.view.PagerTabStrip;
 import android.support.v4.view.ViewPager;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
@@ -68,6 +69,8 @@ public class weatherActivity extends AppCompatActivity {
         setContentView(R.layout.activity_weather);
 
         Toolbar toolbar = findViewById(R.id.weather_toolbar);
+        PagerTabStrip strip = findViewById(R.id.pager_title_strip);
+
         setSupportActionBar(toolbar);
         ActionBar actionBar = getSupportActionBar();
         setTitle(getString(R.string.title_activity_weather));
@@ -87,7 +90,11 @@ public class weatherActivity extends AppCompatActivity {
         windSpeed = findViewById(R.id.windSpeed);
         imgView = findViewById(R.id.condIcon);
         feelsLike = findViewById(R.id.feelsLike);
+
         pager = findViewById(R.id.pager);
+
+        strip.setDrawFullUnderline(false);
+        strip.setTabIndicatorColor(getResources().getColor(R.color.list_item_text_color));
 
         locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
