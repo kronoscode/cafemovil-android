@@ -81,7 +81,7 @@ public class weatherActivity extends AppCompatActivity {
         }
 
         // dafault city
-        String city = "Managua";
+        String city = "Tegucigalpa";
 
         cityText = findViewById(R.id.cityText);
         condDescr = findViewById(R.id.condDescr);
@@ -126,8 +126,8 @@ public class weatherActivity extends AppCompatActivity {
         }
         else {
             // set default weather data - current Managua
-            latitude = 12.1364;
-            longitude = -86.2514;
+            latitude = 14.081999;
+            longitude = -87.202438;
         }
 
         List<Address> addresses;
