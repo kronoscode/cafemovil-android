@@ -151,8 +151,8 @@ public class JSONWeatherParser {
             }
             else{
                 // it goes for days like 31 + 1, there's no 32,so update date to 1
-                if (forecastDayOfWeek == 1 && (todayDayOfWeek == 30 || todayDayOfWeek == 31)){
-                    todayDayOfWeek += 1;
+                if (forecastDayOfWeek == 1 && (todayDayOfWeek == 30 || todayDayOfWeek == 31 || todayDayOfWeek == 32)){
+                    todayDayOfWeek = 1;
                 }
 
             }
