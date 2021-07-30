@@ -77,9 +77,6 @@ public class weatherActivity extends AppCompatActivity {
             actionBar.setHomeAsUpIndicator(R.drawable.ic_back_home);
         }
 
-        // dafault city
-        String city = "Tegucigalpa";
-
         cityText = findViewById(R.id.cityText);
         condDescr = findViewById(R.id.condDescr);
         hum = findViewById(R.id.hum);
@@ -91,7 +88,7 @@ public class weatherActivity extends AppCompatActivity {
         pager = findViewById(R.id.pager);
 
         strip.setDrawFullUnderline(false);
-        strip.setTabIndicatorColor(getResources().getColor(R.color.list_item_text_color));
+        strip.setTabIndicatorColor(getResources().getColor(R.color.tab_weather));
         int MY_WEATHER_PERMISSION = 0;
         locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
@@ -134,6 +131,8 @@ public class weatherActivity extends AppCompatActivity {
             longitude = -87.202438;
         }
 
+        // dafault city
+        String city = "Tegucigalpa";
         List<Address> addresses;
         try {
             Geocoder gcd = new Geocoder(getBaseContext(), Locale.getDefault());
@@ -211,7 +210,7 @@ public class weatherActivity extends AppCompatActivity {
 
             String capitalizeDesc = weather.currentCondition.getDescr().substring(0, 1).toUpperCase() + weather.currentCondition.getDescr().substring(1);
 
-            cityText.setText(weather.location.getCity() + "," + weather.location.getCountry());
+            cityText.setText(weather.location.getCity() + ", " + weather.location.getCountry());
             condDescr.setText(capitalizeDesc);
             temp.setText("" + Math.round((weather.temperature.getTemp())) + "° C");
             hum.setText("" + weather.currentCondition.getHumidity() + "%");
