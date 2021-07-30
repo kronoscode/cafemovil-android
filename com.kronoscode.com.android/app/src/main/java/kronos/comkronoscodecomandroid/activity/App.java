@@ -3,7 +3,7 @@ package kronos.comkronoscodecomandroid.activity;
 import android.app.Activity;
 import android.app.Application;
 import android.content.Context;
-import android.support.v4.app.Fragment;
+import androidx.fragment.app.Fragment;
 import android.widget.Toast;
 
 import com.google.android.gms.analytics.GoogleAnalytics;

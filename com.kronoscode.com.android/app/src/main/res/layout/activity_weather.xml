@@ -228,7 +228,7 @@
             android:layout_marginBottom="20dp"
             android:gravity="center_horizontal"
             android:orientation="vertical">
-            <android.support.v4.view.ViewPager
+            <androidx.viewpager.widget.ViewPager
                 android:id="@+id/pager"
                 android:layout_width="match_parent"
                 android:layout_height="300dp"
@@ -236,7 +236,7 @@
                 android:paddingBottom="4dp"
                 android:visibility="visible">
 
-                <android.support.v4.view.PagerTabStrip
+                <androidx.viewpager.widget.PagerTabStrip
                     android:id="@+id/pager_title_strip"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -245,7 +245,7 @@
                     android:paddingBottom="4dp"
                     android:textColor="@color/black" />
 
-            </android.support.v4.view.ViewPager>
+            </androidx.viewpager.widget.ViewPager>
         </LinearLayout>
 
     </RelativeLayout>

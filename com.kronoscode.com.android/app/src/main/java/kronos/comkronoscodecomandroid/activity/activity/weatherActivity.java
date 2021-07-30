@@ -8,7 +8,6 @@ import com.kronoscode.cacao.android.app.model.WeatherForecast;
 import com.kronoscode.cacao.android.app.provider.WeatherProvider;
 
 import android.Manifest;
-import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.content.Context;
@@ -19,21 +18,18 @@ import android.location.Geocoder;
 import android.location.LocationListener;
 import android.location.LocationManager;
 
-import android.support.v4.app.ActivityCompat;
-import android.support.v4.view.PagerTabStrip;
-import android.support.v4.view.ViewPager;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentActivity;
-import android.support.v7.app.ActionBar;
-import android.support.v7.widget.Toolbar;
-import android.support.v7.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.viewpager.widget.PagerTabStrip;
+import androidx.viewpager.widget.ViewPager;
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.widget.Toolbar;
+import androidx.appcompat.app.AppCompatActivity;
 import android.util.Log;
 
 import java.text.ParseException;
 import java.util.List;
 import java.util.Locale;
 
-import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ImageView;
 import android.widget.TextView;

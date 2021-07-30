@@ -1,19 +1,12 @@
 package kronos.comkronoscodecomandroid.activity.fragment;
 
 import kronos.comkronoscodecomandroid.R;
-import kronos.comkronoscodecomandroid.activity.constants.Constants;
 
-import com.kronoscode.cacao.android.app.provider.WeatherProvider;
 import com.kronoscode.cacao.android.app.model.DayForecast;
 
-import android.content.Context;
-import android.content.res.Resources;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.os.AsyncTask;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
-import android.support.v4.content.ContextCompat;
+import androidx.fragment.app.Fragment;
+import androidx.core.content.ContextCompat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;

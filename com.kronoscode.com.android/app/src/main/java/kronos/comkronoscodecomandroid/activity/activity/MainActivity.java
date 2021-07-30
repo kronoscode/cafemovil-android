@@ -12,16 +12,15 @@ import android.content.Intent;
 import android.content.Loader;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
-import android.graphics.Color;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.v4.app.ActivityCompat;
-import android.support.v4.content.ContextCompat;
-import android.support.v7.widget.SearchView;
-import android.support.v7.widget.Toolbar;
+import androidx.annotation.NonNull;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
+import androidx.appcompat.widget.SearchView;
+import androidx.appcompat.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -33,7 +32,6 @@ import android.widget.ExpandableListView;
 import android.widget.TextView;
 
 import com.google.android.gms.appindexing.Action;
-import com.google.android.gms.appindexing.AppIndex;
 import com.google.android.gms.appindexing.AppIndex;
 import com.google.android.gms.appindexing.Thing;
 import com.google.android.gms.appinvite.AppInvite;
@@ -210,7 +208,7 @@ public class MainActivity extends BaseActivity implements LoaderManager.LoaderCa
 
         searchView = (SearchView) menu.findItem(R.id.action_search).getActionView();
 
-        EditText searchEditText = searchView.findViewById(android.support.v7.appcompat.R.id.search_src_text);
+        EditText searchEditText = searchView.findViewById(androidx.appcompat.R.id.search_src_text);
         searchEditText.setTextColor(getResources().getColor(R.color.white));
         searchEditText.setHintTextColor(getResources().getColor(R.color.white));
 
@@ -880,7 +878,7 @@ public class MainActivity extends BaseActivity implements LoaderManager.LoaderCa
     }
 
     private void changeApiPopUp() {
-        final android.support.v7.app.AlertDialog.Builder alert = new android.support.v7.app.AlertDialog.Builder(this);
+        final androidx.appcompat.app.AlertDialog.Builder alert = new androidx.appcompat.app.AlertDialog.Builder(this);
 
         alert.setTitle(getString(R.string.title));
         alert.setMessage(getString(R.string.current_api));
@@ -907,7 +905,7 @@ public class MainActivity extends BaseActivity implements LoaderManager.LoaderCa
 
 
     private void changeFolderName() {
-        final android.support.v7.app.AlertDialog.Builder alert = new android.support.v7.app.AlertDialog.Builder(this);
+        final androidx.appcompat.app.AlertDialog.Builder alert = new androidx.appcompat.app.AlertDialog.Builder(this);
 
         alert.setTitle(getString(R.string.title));
         alert.setMessage(getString(R.string.current_api));

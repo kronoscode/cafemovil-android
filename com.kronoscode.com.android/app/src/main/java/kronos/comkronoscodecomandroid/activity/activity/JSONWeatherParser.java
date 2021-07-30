@@ -1,7 +1,6 @@
 package kronos.comkronoscodecomandroid.activity.activity;
 
-import android.os.Build;
-import android.support.annotation.RequiresApi;
+import androidx.annotation.RequiresApi;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -14,13 +13,8 @@ import com.kronoscode.cacao.android.app.model.DayForecast;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
-import java.time.format.FormatStyle;
 import java.util.Calendar;
 import java.util.Date;
-import java.util.Locale;
 
 public class JSONWeatherParser {
 

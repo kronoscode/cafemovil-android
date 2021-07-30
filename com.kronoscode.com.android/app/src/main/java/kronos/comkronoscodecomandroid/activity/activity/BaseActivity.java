@@ -13,9 +13,9 @@ import android.content.OperationApplicationException;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.os.RemoteException;
-import android.support.v4.app.ActivityCompat;
-import android.support.v7.app.AlertDialog;
-import android.support.v7.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
 import android.util.Log;
 import android.view.MenuItem;
 

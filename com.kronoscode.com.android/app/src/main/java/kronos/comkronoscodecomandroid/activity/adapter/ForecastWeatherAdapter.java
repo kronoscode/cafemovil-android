@@ -7,12 +7,11 @@ import java.util.GregorianCalendar;
 import kronos.comkronoscodecomandroid.activity.fragment.DayForecastFragment;
 
 import com.kronoscode.cacao.android.app.model.WeatherForecast;
-import com.kronoscode.cacao.android.app.provider.WeatherProvider;
 import com.kronoscode.cacao.android.app.model.DayForecast;
 
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentStatePagerAdapter;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentStatePagerAdapter;
 
 
 public class ForecastWeatherAdapter extends FragmentStatePagerAdapter{

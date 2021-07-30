@@ -1,6 +1,6 @@
 package kronos.comkronoscodecomandroid.activity.event;
 
-import android.support.annotation.StringRes;
+import androidx.annotation.StringRes;
 
 /**
  * Created by jhon on 14/02/16.
