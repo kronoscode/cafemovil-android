@@ -1,6 +1,6 @@
 {
   "type": "content-provider",
-  "packageName": "com.kronoscode.cacao.android.app",
+  "packageName": "com.kronoscode.cafemovil.android.app",
   "databaseName": "cacao",
   "databaseVersion": 11
   ,

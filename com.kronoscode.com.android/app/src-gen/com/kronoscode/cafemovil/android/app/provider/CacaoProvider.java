@@ -22,7 +22,7 @@ import java.util.List;
  
 public class CacaoProvider extends ContentProvider {
  
-    public static final String AUTHORITY = "com.kronoscode.cacao.android.app.provider.cacao";
+    public static final String AUTHORITY = "com.kronoscode.cafemovil.android.app.provider.cacao";
   
     public static final Uri AUTHORITY_URI = Uri.parse("content://" + AUTHORITY);
     public static final String TAG = "CacaoProvider";

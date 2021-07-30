@@ -33,6 +33,7 @@ import java.util.Locale;
 import android.view.MenuItem;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 
 import kronos.comkronoscodecomandroid.R;
@@ -91,17 +92,24 @@ public class weatherActivity extends AppCompatActivity {
 
         strip.setDrawFullUnderline(false);
         strip.setTabIndicatorColor(getResources().getColor(R.color.list_item_text_color));
-
+        int MY_WEATHER_PERMISSION = 0;
         locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             // TODO: Consider calling
             //    ActivityCompat#requestPermissions
-            // here to request the missing permissions, and then overriding
-            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
-            //                                          int[] grantResults)
-            // to handle the case where the user grants the permission. See the documentation
-            // for ActivityCompat#requestPermissions for more details.
-            return;
+
+            Toast permissionDeniedMsg =
+                    Toast.makeText(getApplicationContext(),
+                            "Debes aceptar el permiso de localización para ver el clima de tu ciudad", Toast.LENGTH_SHORT);
+
+            permissionDeniedMsg.show();
+
+
+            ActivityCompat.requestPermissions(this,new String[]{Manifest.permission.ACCESS_COARSE_LOCATION},
+                    MY_WEATHER_PERMISSION);
+
+            ActivityCompat.requestPermissions(this,new String[]{Manifest.permission.ACCESS_FINE_LOCATION},
+                    MY_WEATHER_PERMISSION);
         }
         try {
 
@@ -211,7 +219,6 @@ public class weatherActivity extends AppCompatActivity {
 //            press.setText("" + weather.currentCondition.getPressure() + " hPa");
             windSpeed.setText("" + Math.round(weather.wind.getSpeed() * 3.6) + " km/h");
 //            windDeg.setText("" + weather.wind.getDeg() + "");
-
         }
     }
 
@@ -234,6 +241,14 @@ public class weatherActivity extends AppCompatActivity {
             super.onPostExecute(forecastWeather);
             ForecastWeatherAdapter adapter = new ForecastWeatherAdapter(Integer.parseInt(forecastDaysNum), getSupportFragmentManager() ,forecastWeather);
             pager.setAdapter(adapter);
+            if (ActivityCompat.checkSelfPermission(weatherActivity.this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(weatherActivity.this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+                Toast permissionDeniedMsg =
+                        Toast.makeText(getApplicationContext(),
+                                "Sin accesso a localización, mostrando clima de Tegucigalpa", Toast.LENGTH_SHORT);
+
+                permissionDeniedMsg.show();
+
+            }
         }
     }
 }

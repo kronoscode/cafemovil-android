@@ -486,13 +486,26 @@ public class MainActivity extends BaseActivity implements LoaderManager.LoaderCa
 
                 //CHeck for permissions on android M
                 if (Build.VERSION.SDK_INT > Build.VERSION_CODES.LOLLIPOP_MR1) {
+                    int internetPermissionCheck = ContextCompat.checkSelfPermission(MainActivity.this,
+                            Manifest.permission.INTERNET);
+                    if(internetPermissionCheck != PackageManager.PERMISSION_GRANTED){
+                        if (ActivityCompat.shouldShowRequestPermissionRationale(MainActivity.this,
+                                Manifest.permission.INTERNET)) {
+
+                        } else {
+
+                            ActivityCompat.requestPermissions(MainActivity.this,
+                                    new String[]{Manifest.permission.INTERNET},
+                                    MY_PERMISSION_THING);
+                        }
+                    }
+
                     int permissionCheck = ContextCompat.checkSelfPermission(MainActivity.this,
                             Manifest.permission.WRITE_EXTERNAL_STORAGE);
 
                     if (permissionCheck != PackageManager.PERMISSION_GRANTED) {
                         if (ActivityCompat.shouldShowRequestPermissionRationale(MainActivity.this,
                                 Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
-
 
                         } else {
 
@@ -505,6 +518,8 @@ public class MainActivity extends BaseActivity implements LoaderManager.LoaderCa
                             // result of the request.
                         }
                     }
+
+
                 }
 
                 int lengthOfFile = connection.getContentLength();
@@ -540,7 +555,7 @@ public class MainActivity extends BaseActivity implements LoaderManager.LoaderCa
                 }
 
             } catch (Exception e) {
-                Log.d("CACAO DEBUG", e.getMessage());
+                Log.d("CACAO DEBUG", String.valueOf(e.getStackTrace()));
                 failed = true;
             } finally {
                 if (connection != null) {
