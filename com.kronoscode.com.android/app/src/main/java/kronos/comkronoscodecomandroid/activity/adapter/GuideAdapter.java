@@ -11,7 +11,7 @@ import android.widget.Filterable;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import com.kronoscode.cacao.android.app.model.GuideVersion;
+import com.kronoscode.cafemovil.android.app.model.GuideVersion;
 
 import java.util.ArrayList;
 import java.util.Iterator;

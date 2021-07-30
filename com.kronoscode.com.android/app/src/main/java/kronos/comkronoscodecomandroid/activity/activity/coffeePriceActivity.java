@@ -7,8 +7,8 @@ import androidx.appcompat.widget.Toolbar;
 import android.view.MenuItem;
 import android.widget.TextView;
 
-import com.kronoscode.cacao.android.app.model.CoffeeInvestingPrice;
-import com.kronoscode.cacao.android.app.provider.CoffeePriceProvider;
+import com.kronoscode.cafemovil.android.app.model.CoffeeInvestingPrice;
+import com.kronoscode.cafemovil.android.app.provider.CoffeePriceProvider;
 
 import org.json.JSONException;
 

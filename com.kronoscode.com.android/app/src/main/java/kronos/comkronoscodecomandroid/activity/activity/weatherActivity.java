@@ -3,9 +3,9 @@ package kronos.comkronoscodecomandroid.activity.activity;
 import org.json.JSONException;
 
 import kronos.comkronoscodecomandroid.activity.adapter.ForecastWeatherAdapter;
-import com.kronoscode.cacao.android.app.model.Weather;
-import com.kronoscode.cacao.android.app.model.WeatherForecast;
-import com.kronoscode.cacao.android.app.provider.WeatherProvider;
+import com.kronoscode.cafemovil.android.app.model.Weather;
+import com.kronoscode.cafemovil.android.app.model.WeatherForecast;
+import com.kronoscode.cafemovil.android.app.provider.WeatherProvider;
 
 import android.Manifest;
 import android.os.AsyncTask;

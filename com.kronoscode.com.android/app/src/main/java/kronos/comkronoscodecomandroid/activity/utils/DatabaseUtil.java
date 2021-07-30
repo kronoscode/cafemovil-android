@@ -2,7 +2,7 @@ package kronos.comkronoscodecomandroid.activity.utils;
 
 import android.content.ContentResolver;
 
-import com.kronoscode.cacao.android.app.provider.CacaoProvider;
+import com.kronoscode.cafemovil.android.app.provider.CacaoProvider;
 
 import javax.inject.Inject;
 import javax.inject.Singleton;

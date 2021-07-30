@@ -1,14 +1,12 @@
 package kronos.comkronoscodecomandroid.activity.activity;
 
-import androidx.annotation.RequiresApi;
-
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-import com.kronoscode.cacao.android.app.model.Location;
-import com.kronoscode.cacao.android.app.model.Weather;
-import com.kronoscode.cacao.android.app.model.WeatherForecast;
-import com.kronoscode.cacao.android.app.model.DayForecast;
+import com.kronoscode.cafemovil.android.app.model.Location;
+import com.kronoscode.cafemovil.android.app.model.Weather;
+import com.kronoscode.cafemovil.android.app.model.WeatherForecast;
+import com.kronoscode.cafemovil.android.app.model.DayForecast;
 
 import java.text.DateFormat;
 import java.text.ParseException;

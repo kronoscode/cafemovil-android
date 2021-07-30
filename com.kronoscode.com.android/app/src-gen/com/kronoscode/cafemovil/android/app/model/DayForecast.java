@@ -1,5 +1,4 @@
-package com.kronoscode.cacao.android.app.model;
-import java.text.DateFormat;
+package com.kronoscode.cafemovil.android.app.model;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 

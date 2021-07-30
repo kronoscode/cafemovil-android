@@ -11,7 +11,7 @@ android {
     compileSdkVersion 29
 
     defaultConfig {
-        applicationId "kronos.cacaomovil"
+        applicationId "kronos.cafemovil"
         minSdkVersion 22
         targetSdkVersion 29
         versionCode 2

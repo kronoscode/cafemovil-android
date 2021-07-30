@@ -19,9 +19,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.util.Log;
 import android.view.MenuItem;
 
-import com.kronoscode.cacao.android.app.database.table.EventTable;
-import com.kronoscode.cacao.android.app.model.Event;
-import com.kronoscode.cacao.android.app.provider.CacaoProvider;
+import com.kronoscode.cafemovil.android.app.database.table.EventTable;
+import com.kronoscode.cafemovil.android.app.model.Event;
+import com.kronoscode.cafemovil.android.app.provider.CacaoProvider;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;

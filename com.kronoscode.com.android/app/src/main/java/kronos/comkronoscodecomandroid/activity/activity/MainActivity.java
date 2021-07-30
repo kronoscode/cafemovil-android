@@ -41,11 +41,11 @@ import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.common.api.ResultCallback;
 import com.google.gson.Gson;
-import com.kronoscode.cacao.android.app.database.table.GuideTable;
-import com.kronoscode.cacao.android.app.database.table.GuideVersionTable;
-import com.kronoscode.cacao.android.app.model.Guide;
-import com.kronoscode.cacao.android.app.model.GuideVersion;
-import com.kronoscode.cacao.android.app.provider.CacaoProvider;
+import com.kronoscode.cafemovil.android.app.database.table.GuideTable;
+import com.kronoscode.cafemovil.android.app.database.table.GuideVersionTable;
+import com.kronoscode.cafemovil.android.app.model.Guide;
+import com.kronoscode.cafemovil.android.app.model.GuideVersion;
+import com.kronoscode.cafemovil.android.app.provider.CacaoProvider;
 
 import org.json.JSONException;
 import org.json.JSONObject;

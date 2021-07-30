@@ -2,11 +2,11 @@ package kronos.comkronoscodecomandroid.activity.fragment;
 
 import kronos.comkronoscodecomandroid.R;
 
-import com.kronoscode.cacao.android.app.model.DayForecast;
+import com.kronoscode.cafemovil.android.app.model.DayForecast;
 
 import android.os.Bundle;
 import androidx.fragment.app.Fragment;
-import androidx.core.content.ContextCompat;
+
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;

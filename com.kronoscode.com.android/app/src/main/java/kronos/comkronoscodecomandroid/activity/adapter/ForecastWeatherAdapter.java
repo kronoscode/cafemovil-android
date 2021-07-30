@@ -6,8 +6,8 @@ import java.util.GregorianCalendar;
 
 import kronos.comkronoscodecomandroid.activity.fragment.DayForecastFragment;
 
-import com.kronoscode.cacao.android.app.model.WeatherForecast;
-import com.kronoscode.cacao.android.app.model.DayForecast;
+import com.kronoscode.cafemovil.android.app.model.WeatherForecast;
+import com.kronoscode.cafemovil.android.app.model.DayForecast;
 
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;

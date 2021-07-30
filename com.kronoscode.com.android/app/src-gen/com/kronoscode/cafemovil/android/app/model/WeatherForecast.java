@@ -1,4 +1,4 @@
-package com.kronoscode.cacao.android.app.model;
+package com.kronoscode.cafemovil.android.app.model;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -1,4 +1,4 @@
-package com.kronoscode.cacao.android.app.provider;
+package com.kronoscode.cafemovil.android.app.provider;
 
 import java.io.BufferedReader;
 import java.io.ByteArrayOutputStream;

@@ -54,7 +54,7 @@
       "client_info": {
         "mobilesdk_app_id": "1:994713377768:android:05d1c57571704a80",
         "android_client_info": {
-          "package_name": "kronos.cacaomovil"
+          "package_name": "kronos.cafemovil"
         }
       },
       "oauth_client": [
@@ -62,7 +62,7 @@
           "client_id": "994713377768-drj41lmjkumu7m3ofgr4k64m8raahqo4.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
-            "package_name": "kronos.cacaomovil",
+            "package_name": "kronos.cafemovil",
             "certificate_hash": "80BDD9EEC57DAA93813B2E892CF8998FD3C3A2BB"
           }
         },

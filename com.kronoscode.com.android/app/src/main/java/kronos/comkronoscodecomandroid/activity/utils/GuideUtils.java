@@ -1,17 +1,12 @@
 package kronos.comkronoscodecomandroid.activity.utils;
 
-import android.app.Application;
 import android.content.ContentResolver;
-import android.content.Context;
 import android.database.Cursor;
-import android.net.ConnectivityManager;
-import android.net.NetworkInfo;
-import android.os.Environment;
 
-import com.kronoscode.cacao.android.app.database.table.EventTable;
-import com.kronoscode.cacao.android.app.database.table.GuideVersionTable;
-import com.kronoscode.cacao.android.app.model.GuideVersion;
-import com.kronoscode.cacao.android.app.provider.CacaoProvider;
+import com.kronoscode.cafemovil.android.app.database.table.EventTable;
+import com.kronoscode.cafemovil.android.app.database.table.GuideVersionTable;
+import com.kronoscode.cafemovil.android.app.model.GuideVersion;
+import com.kronoscode.cafemovil.android.app.provider.CacaoProvider;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,8 +14,6 @@ import java.util.List;
 import javax.inject.Inject;
 import javax.inject.Singleton;
 
-import kronos.comkronoscodecomandroid.R;
-import kronos.comkronoscodecomandroid.activity.constants.Constants;
 import kronos.comkronoscodecomandroid.activity.prefs.PersistentStore;
 
 

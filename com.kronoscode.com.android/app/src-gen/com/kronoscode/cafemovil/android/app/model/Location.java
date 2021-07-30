@@ -1,4 +1,4 @@
-package com.kronoscode.cacao.android.app.model;
+package com.kronoscode.cafemovil.android.app.model;
 import java.io.Serializable;
 
 public class Location implements Serializable {

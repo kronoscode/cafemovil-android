@@ -1,6 +1,6 @@
-package com.kronoscode.cacao.android.app.database;
+package com.kronoscode.cafemovil.android.app.database;
  
-import com.kronoscode.cacao.android.app.database.table.*;
+import com.kronoscode.cafemovil.android.app.database.table.*;
  
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;

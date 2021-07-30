@@ -2,9 +2,8 @@ package kronos.comkronoscodecomandroid.activity.activity;
 
 import org.json.JSONException;
 import org.json.JSONObject;
-import org.json.JSONArray;
 
-import com.kronoscode.cacao.android.app.model.CoffeeInvestingPrice;
+import com.kronoscode.cafemovil.android.app.model.CoffeeInvestingPrice;
 
 public class JsonCoffeePriceParser {
 

@@ -1,4 +1,4 @@
-package com.kronoscode.cacao.android.app.database.table;
+package com.kronoscode.cafemovil.android.app.database.table;
  
 public final class GuideVersionTable {
     private GuideVersionTable() {}

@@ -1,8 +1,8 @@
-package com.kronoscode.cacao.android.app.provider;
+package com.kronoscode.cafemovil.android.app.provider;
  
-import com.kronoscode.cacao.android.app.database.CacaoDatabase;
+import com.kronoscode.cafemovil.android.app.database.CacaoDatabase;
  
-import com.kronoscode.cacao.android.app.database.table.*;
+import com.kronoscode.cafemovil.android.app.database.table.*;
  
 import android.provider.BaseColumns;
 import android.text.TextUtils;

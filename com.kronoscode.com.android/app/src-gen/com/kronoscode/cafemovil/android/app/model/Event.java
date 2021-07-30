@@ -1,4 +1,4 @@
-package com.kronoscode.cacao.android.app.model;
+package com.kronoscode.cafemovil.android.app.model;
  
 import android.content.ContentValues;
 import android.database.Cursor;
@@ -6,7 +6,7 @@ import android.database.Cursor;
 import android.os.Parcel;
 import android.os.Parcelable;
    
-import com.kronoscode.cacao.android.app.database.table.EventTable; 
+import com.kronoscode.cafemovil.android.app.database.table.EventTable;
   
 import java.util.ArrayList;
 import java.util.List;

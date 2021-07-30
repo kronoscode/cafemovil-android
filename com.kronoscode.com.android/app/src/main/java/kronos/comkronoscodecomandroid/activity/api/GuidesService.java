@@ -1,7 +1,7 @@
 package kronos.comkronoscodecomandroid.activity.api;
 
 
-import com.kronoscode.cacao.android.app.model.Guide;
+import com.kronoscode.cafemovil.android.app.model.Guide;
 
 import java.util.List;
 
