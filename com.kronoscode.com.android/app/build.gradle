@@ -1,4 +1,5 @@
 apply plugin: 'com.android.application'
+//remover google-services
 apply plugin: 'com.google.gms.google-services'
 
 android {
@@ -14,8 +15,8 @@ android {
         applicationId "kronos.cafemovil"
         minSdkVersion 22
         targetSdkVersion 29
-        versionCode 2
-        versionName "2.0"
+        versionCode 3
+        versionName "2.1"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         buildConfigField 'String', 'CACAO_GUIDES', "\"CACAO GUIAS\""
         multiDexEnabled true
@@ -23,7 +24,6 @@ android {
 
         multiDexEnabled true
     }
-
 
 
     // GUIDES FOLDER
@@ -64,11 +64,17 @@ dependencies {
     implementation 'androidx.appcompat:appcompat:1.0.2'
     implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
+    implementation 'androidx.core:core:1.0.0'
+
 
     implementation 'com.google.android.gms:play-services:9.0.0'
 
     implementation 'com.jakewharton:butterknife:10.2.1'
+    implementation platform('com.google.firebase:firebase-bom:28.2.1')
+
+    implementation 'com.google.firebase:firebase-messaging:17.3.4'
     annotationProcessor 'com.jakewharton:butterknife-compiler:10.2.1'
+    implementation 'com.google.firebase:firebase-messaging-ktx:22.0.0'
 
     implementation 'com.vikingsen:pocketknife-core:3.2.0'
     annotationProcessor 'com.vikingsen:pocketknife-compiler:3.2.0'

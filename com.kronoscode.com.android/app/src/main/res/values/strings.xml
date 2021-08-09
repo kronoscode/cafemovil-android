@@ -1,9 +1,9 @@
 <resources>
-    <string name="app_name">INCAFE</string>
-    <string name="long_app_name">Guías de INCAFE </string>
+    <string name="app_name">IHCAFE</string>
+    <string name="long_app_name">Guías de IHCAFE </string>
     <string name="app_description">Aprendiendo e innovando sobre el cacao en sistemas agroforestales</string>
 
-    <string name="title">Guías de INCAFE </string>
+    <string name="title">Guías de IHCAFE </string>
     <string name="title_files_provider">SDCARD - GUIAS ZIP</string>
 
     <string name="unzip_msg">Descomprimiendo... Espere un momento</string>
@@ -16,6 +16,9 @@
     <string name="title_activity_about">Acerca de</string>
     <string name="title_activity_weather">Clima</string>
     <string name="title_activity_coffee">Precio del café</string>
+    <string name="gps_inactive">Localizacion desactivada</string>
+    <string name="weather_location_no_access">Localizacion desactivada, mostrando clima de Tegucigalpa</string>
+    <string name="weather_request_location">Debes aceptar el permiso de localización para ver el clima de tu ciudad</string>
     <string name="title_load_sdCard">Importar desde Memoria Externa</string>
     <string name="guide_list">Lista de Cartillas</string>
     <string name="download">Descargar</string>
@@ -43,6 +46,7 @@
     <string name="cancel_download_msg">¿Está seguro que desea cancelar la descarga?</string>
     <string name="yes">Si</string>
     <string name="no">No</string>
+    <string name="accept">Aceptar</string>
     <string name="error_on_unzip">Un error ha ocurrido al descomprimir la guía</string>
     <string name="file_explorer_file">Necesitas instalar un explorador de archivos</string>
     <string name="not_content">No hay contenido</string>

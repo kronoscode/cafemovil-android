@@ -7,7 +7,9 @@ import com.kronoscode.cafemovil.android.app.model.Weather;
 import com.kronoscode.cafemovil.android.app.model.WeatherForecast;
 import com.kronoscode.cafemovil.android.app.provider.WeatherProvider;
 
+import android.app.AlertDialog;
 import android.Manifest;
+import android.content.DialogInterface;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.content.Context;
@@ -31,9 +33,9 @@ import java.util.List;
 import java.util.Locale;
 
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 
 import kronos.comkronoscodecomandroid.R;
@@ -52,8 +54,13 @@ public class weatherActivity extends AppCompatActivity {
     private TextView temp;
     private TextView feelsLike;
     private TextView windSpeed;
+    private ImageView refreshData;
 
     private static String forecastDaysNum = "5";
+    // dafault city
+    String city = "Tegucigalpa";
+    String StrLat;
+    String StrLng;
     private ViewPager pager;
 
     private TextView hum;
@@ -76,7 +83,7 @@ public class weatherActivity extends AppCompatActivity {
             actionBar.setHomeButtonEnabled(true);
             actionBar.setHomeAsUpIndicator(R.drawable.ic_back_home);
         }
-
+        refreshData = findViewById(R.id.refresh_weather);
         cityText = findViewById(R.id.cityText);
         condDescr = findViewById(R.id.condDescr);
         hum = findViewById(R.id.hum);
@@ -91,68 +98,75 @@ public class weatherActivity extends AppCompatActivity {
         strip.setTabIndicatorColor(getResources().getColor(R.color.tab_weather));
         int MY_WEATHER_PERMISSION = 0;
         locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
-        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-            // TODO: Consider calling
-            //    ActivityCompat#requestPermissions
 
-            Toast permissionDeniedMsg =
-                    Toast.makeText(getApplicationContext(),
-                            "Debes aceptar el permiso de localización para ver el clima de tu ciudad", Toast.LENGTH_SHORT);
-
-            permissionDeniedMsg.show();
-
-
-            ActivityCompat.requestPermissions(this,new String[]{Manifest.permission.ACCESS_COARSE_LOCATION},
-                    MY_WEATHER_PERMISSION);
-
-            ActivityCompat.requestPermissions(this,new String[]{Manifest.permission.ACCESS_FINE_LOCATION},
-                    MY_WEATHER_PERMISSION);
-        }
-        try {
-
-            gps_loc = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
-            network_loc = locationManager.getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        if (gps_loc != null) {
-            final_loc = gps_loc;
-            latitude = final_loc.getLatitude();
-            longitude = final_loc.getLongitude();
-        } else if (network_loc != null) {
-            final_loc = network_loc;
-            latitude = final_loc.getLatitude();
-            longitude = final_loc.getLongitude();
-        }
-        else {
-            // set default weather data - current Managua
-            latitude = 14.081999;
-            longitude = -87.202438;
-        }
-
-        // dafault city
-        String city = "Tegucigalpa";
-        List<Address> addresses;
-        try {
-            Geocoder gcd = new Geocoder(getBaseContext(), Locale.getDefault());
-            addresses = gcd.getFromLocation(latitude,longitude, 1);
-            if (addresses.size() > 0){
-                city = addresses.get(0).getLocality();
+        refreshData.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+                startActivity(getIntent());
             }
-        } catch (Exception e){
-            e.printStackTrace();
+        });
+
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
+            // retrieve weather (current) data
+            try {
+
+                gps_loc = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
+                network_loc = locationManager.getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            if (gps_loc != null) {
+                final_loc = gps_loc;
+                latitude = final_loc.getLatitude();
+                longitude = final_loc.getLongitude();
+            } else if (network_loc != null) {
+                final_loc = network_loc;
+                latitude = final_loc.getLatitude();
+                longitude = final_loc.getLongitude();
+            }
+            else {
+                // set default weather data - current Managua
+                latitude = 14.081999;
+                longitude = -87.202438;
+            }
+
+            List<Address> addresses;
+            try {
+                Geocoder gcd = new Geocoder(getBaseContext(), Locale.getDefault());
+                addresses = gcd.getFromLocation(latitude,longitude, 1);
+                if (addresses.size() > 0){
+                    city = addresses.get(0).getLocality();
+                }
+            } catch (Exception e){
+                e.printStackTrace();
+            }
+            StrLat = String.valueOf(latitude);
+            StrLng = String.valueOf(longitude);
+            JSONWeatherTask task = new JSONWeatherTask();
+            task.execute(new String[]{city,StrLat, StrLng});
+
+            // retrieve forecast data
+            JSONForecastTask forecastTask = new JSONForecastTask();
+            forecastTask.execute(new String[]{city});
+            if (final_loc == null) {
+                final android.app.AlertDialog.Builder builder = new android.app.AlertDialog.Builder(this);
+                builder.setMessage(R.string.weather_location_no_access)
+                        .setCancelable(true)
+                        .setPositiveButton(R.string.accept, new DialogInterface.OnClickListener() {
+                            public void onClick(@SuppressWarnings("unused") final DialogInterface dialog, @SuppressWarnings("unused") final int id) {
+//                               TODO: open device settings when location is inactive
+                            }
+                        });
+                final AlertDialog alert = builder.create();
+                alert.setCanceledOnTouchOutside(false);
+                alert.show();
+
+            }
+        } else {
+            locationDialog(getString(R.string.weather_request_location), getString(R.string.accept));
         }
-        String StrLat = String.valueOf(latitude);
-        String StrLng = String.valueOf(longitude);
-
-        // retrieve weather (current) data
-        JSONWeatherTask task = new JSONWeatherTask();
-        task.execute(new String[]{city,StrLat, StrLng});
-
-        // retrieve forecast data
-        JSONForecastTask forecastTask = new JSONForecastTask();
-        forecastTask.execute(new String[]{city});
 
     }
 
@@ -171,13 +185,72 @@ public class weatherActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    public static String fmt(double d)
-    {
-        if (d == Math.floor(d)) {
-            return String.format("%.0f", d); // Format is: 0 places after decimal point
-        } else {
-            return Double.toString(d);
+    @Override
+    public void onRequestPermissionsResult(int requestCode, String permissions[], int[] grantResults) {
+        switch (requestCode) {
+            case 0: {
+                try {
+
+                    gps_loc = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
+                    network_loc = locationManager.getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
+
+                } catch (Exception e){
+                    e.printStackTrace();
+                }
+                if (gps_loc != null) {
+                    final_loc = gps_loc;
+                    latitude = final_loc.getLatitude();
+                    longitude = final_loc.getLongitude();
+                } else if (network_loc != null) {
+                    final_loc = network_loc;
+                    latitude = final_loc.getLatitude();
+                    longitude = final_loc.getLongitude();
+                }
+                else {
+                    // set default weather data - current Managua
+                    latitude = 14.081999;
+                    longitude = -87.202438;
+                }
+
+                List<Address> addresses;
+                try {
+                    Geocoder gcd = new Geocoder(getBaseContext(), Locale.getDefault());
+                    addresses = gcd.getFromLocation(latitude,longitude, 1);
+                    if (addresses.size() > 0){
+                        city = addresses.get(0).getLocality();
+                    }
+                } catch (Exception e){
+                    e.printStackTrace();
+                }
+                StrLat = String.valueOf(latitude);
+                StrLng = String.valueOf(longitude);
+
+                JSONWeatherTask task = new JSONWeatherTask();
+                task.execute(new String[]{city,StrLat, StrLng});
+
+                // retrieve forecast data
+                JSONForecastTask forecastTask = new JSONForecastTask();
+                forecastTask.execute(new String[]{city});
+                return;
+            }
         }
+    }
+    private void locationDialog(String message, String positiveMsg) {
+        final android.app.AlertDialog.Builder builder = new android.app.AlertDialog.Builder(this);
+        builder.setMessage(message)
+                .setCancelable(true)
+                .setPositiveButton(positiveMsg, new DialogInterface.OnClickListener() {
+                    public void onClick(@SuppressWarnings("unused") final DialogInterface dialog, @SuppressWarnings("unused") final int id) {
+                        if (ActivityCompat.checkSelfPermission(weatherActivity.this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+
+                            ActivityCompat.requestPermissions(weatherActivity.this,new String[]{Manifest.permission.ACCESS_FINE_LOCATION},
+                            0);
+                        }
+                    }
+                });
+        final AlertDialog alert = builder.create();
+        alert.setCanceledOnTouchOutside(false);
+        alert.show();
     }
 
     private class JSONWeatherTask extends AsyncTask<String, Void, Weather> {
@@ -240,14 +313,7 @@ public class weatherActivity extends AppCompatActivity {
             super.onPostExecute(forecastWeather);
             ForecastWeatherAdapter adapter = new ForecastWeatherAdapter(Integer.parseInt(forecastDaysNum), getSupportFragmentManager() ,forecastWeather);
             pager.setAdapter(adapter);
-            if (ActivityCompat.checkSelfPermission(weatherActivity.this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(weatherActivity.this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-                Toast permissionDeniedMsg =
-                        Toast.makeText(getApplicationContext(),
-                                "Sin accesso a localización, mostrando clima de Tegucigalpa", Toast.LENGTH_SHORT);
 
-                permissionDeniedMsg.show();
-
-            }
         }
     }
 }
