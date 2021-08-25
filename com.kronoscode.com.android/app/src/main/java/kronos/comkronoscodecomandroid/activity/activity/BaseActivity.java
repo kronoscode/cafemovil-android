@@ -22,6 +22,7 @@ import android.view.MenuItem;
 import com.kronoscode.cafemovil.android.app.database.table.EventTable;
 import com.kronoscode.cafemovil.android.app.model.Event;
 import com.kronoscode.cafemovil.android.app.provider.CacaoProvider;
+import com.pusher.pushnotifications.PushNotifications;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -79,6 +80,9 @@ public class BaseActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+//        PushNotifications.start(getApplicationContext(), "e9a11825-65c3-45f0-8a2e-126919caac71");
+        PushNotifications.start(getApplicationContext(), "19dcc203-4256-4704-8131-068bc5c1cef2");
+        PushNotifications.addDeviceInterest("hello");
         App.getInjectComponent(this).inject(this);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
